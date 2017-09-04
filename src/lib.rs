@@ -23,7 +23,7 @@ pub trait TypeVal<T> {
 /// including doc comments, should go
 /// above their targets.
 ///
-/// ##Example
+/// ## Example
 /// 
 /// ```rust
 /// // Private
