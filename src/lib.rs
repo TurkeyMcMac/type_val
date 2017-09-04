@@ -44,7 +44,7 @@ pub trait TypeVal<T> {
 /// ```
 #[macro_export]
 macro_rules! def_type_val {
-    {$($(#[$attr:meta])* type $name:ident: $type:ident = $value:expr;)+} => {
+    {$($(#[$attr:meta])* type $name:ident: $type:ty = $value:expr;)+} => {
         $(
             $(#[$attr])*
             struct $name;
@@ -54,7 +54,7 @@ macro_rules! def_type_val {
             }
         )+
     };
-    {$($(#[$attr:meta])* pub type $name:ident: $type:ident = $value:expr;)+} => {
+    {$($(#[$attr:meta])* pub type $name:ident: $type:ty = $value:expr;)+} => {
         $(
             $(#[$attr])*
             pub struct $name;
