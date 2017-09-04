@@ -1,3 +1,5 @@
+#![no_std]
+
 //! This crate allows for the creation
 //! of type-level values. Any value can
 //! be type-level as long as it can be
