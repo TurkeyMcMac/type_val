@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["TurkeyMcMac <jwmhjwmh@gmail.com>"]
 description = "Type-level values."
 repository = "https://github.com/TurkeyMcMac/type_val"
-categories = ["no_std"]
+categories = ["no-std"]
 license = "MIT"
 
 [dependencies]
