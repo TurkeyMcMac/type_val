@@ -34,4 +34,12 @@ def_type_val! {
     pub type NegOne: i32 = -1;
     pub type False: bool = false;
 }
+
+println!("One = {}, True = {}, NegOne = {}, False = {}",
+    One::VAL,
+    True::VAL,
+    NegOne::VAL,
+    False::VAL);
 ```
+## How to Obtain
+This project is available on crates.io [here](https://crates.io/crates/type_val).
