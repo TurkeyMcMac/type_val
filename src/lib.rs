@@ -18,25 +18,19 @@ pub trait TypeVal<T> {
 /// This macro is used to implement the
 /// TypeVal trait. Any number of values
 /// can be initialized with a single
-/// invocation, but every value in a
-/// single invocation must be either
-/// public or private. Attributes to
-/// be applied to items in a block,
-/// including doc comments, should go
-/// above their targets.
+/// invocation. Items prefixed by `pub`
+/// are public. Attributes to be applied
+/// to items in a block, including doc
+/// comments, should go above their
+/// targets.
 ///
 /// ## Example
 /// 
 /// ```rust
-/// // Private
 /// def_type_val! {
 ///     type One: i32 = 1;
 ///     #[derive(Clone, Copy)]
 ///     type True: bool = true;
-/// }
-///
-/// // Public
-/// def_type_val! {
 ///     /// Negative one
 ///     pub type NegOne: i32 = -1;
 ///     pub type False: bool = false;
@@ -44,24 +38,25 @@ pub trait TypeVal<T> {
 /// ```
 #[macro_export]
 macro_rules! def_type_val {
-    {$($(#[$attr:meta])* type $name:ident: $type:ty = $value:expr;)+} => {
-        $(
-            $(#[$attr])*
-            struct $name;
-            
-            impl $crate::TypeVal<$type> for $name {
-                const VAL: $type = $value;
-            }
-        )+
+    {$(#[$attr:meta])* type $name:ident: $type:ty = $value:expr; $($next:tt)*} => {
+        $(#[$attr])*
+        struct $name;
+        
+        impl $crate::TypeVal<$type> for $name {
+            const VAL: $type = $value;
+        }
+        
+        def_type_val!($($next)*);
     };
-    {$($(#[$attr:meta])* pub type $name:ident: $type:ty = $value:expr;)+} => {
-        $(
-            $(#[$attr])*
-            pub struct $name;
-            
-            impl $crate::TypeVal<$type> for $name {
-                const VAL: $type = $value;
-            }
-        )+
+    {$(#[$attr:meta])* pub type $name:ident: $type:ty = $value:expr; $($next:tt)*} => {
+        $(#[$attr])*
+        pub struct $name;
+        
+        impl $crate::TypeVal<$type> for $name {
+            const VAL: $type = $value;
+        }
+        
+        def_type_val!($($next)*);
     };
+    () => {};
 }
