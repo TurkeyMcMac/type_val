@@ -35,6 +35,12 @@ pub trait TypeVal<T> {
 ///     pub type NegOne: i32 = -1;
 ///     pub type False: bool = false;
 /// }
+///
+/// println!("One = {}, True = {}, NegOne = {}, False = {}",
+///     One::VAL,
+///     True::VAL,
+///     NegOne::VAL,
+///     False::VAL);
 /// ```
 #[macro_export]
 macro_rules! def_type_val {

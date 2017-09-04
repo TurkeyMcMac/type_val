@@ -1,6 +1,6 @@
 [package]
 name = "type_val"
-version = "0.3.1"
+version = "0.3.2"
 authors = ["TurkeyMcMac <jwmhjwmh@gmail.com>"]
 description = "Type-level values."
 repository = "https://github.com/TurkeyMcMac/type_val"
